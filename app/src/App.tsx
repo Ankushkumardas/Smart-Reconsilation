@@ -1,0 +1,48 @@
+import { useState } from 'react'
+import './App.css'
+import FileUpload from './components/FileUpload'
+import ReconciliationTable from './components/ReconciliationTable'
+import History from './components/History'
+import { reconcileFiles, type ComparisonResult } from './utils/matcher'
+import type { Invoice } from './utils/parser'
+import { saveHistory } from './utils/storage'
+
+function App() {
+  const [results, setResults] = useState<ComparisonResult | null>(null);
+
+  const handleProcess = (fileA: Invoice[], fileB: Invoice[]) => {
+    // Rule 5: Reconcile
+    const comparison = reconcileFiles(fileA, fileB);
+    setResults(comparison);
+
+    // Rule 7: Save to local storage
+    saveHistory(comparison);
+  };
+
+  const handleLoadHistory = (savedResult: ComparisonResult) => {
+    setResults(savedResult);
+    // Scroll to top or results
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  return (
+    <div className="container">
+      <header className="header">
+        <h1>Smart Reconciliation Visualizer</h1>
+        <p>Simple tool to compare two invoice files (CSV or Excel)</p>
+      </header>
+
+      <main className="main-content">
+        <FileUpload onProcess={handleProcess} />
+
+        {results && (
+          <ReconciliationTable results={results} />
+        )}
+
+        <History onLoadHistory={handleLoadHistory} />
+      </main>
+    </div>
+  )
+}
+
+export default App
