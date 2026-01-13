@@ -1,78 +1,150 @@
-# Smart Reconciliation Visualizer
+# 📊 Smart Reconciliation Visualizer
 
-Welcome to the **Smart Reconciliation Visualizer**! This is a simple tool designed to help you compare two invoice files (like Excel or CSV) and see what matches, what doesn't, and what is missing.
+<div align="center">
 
-## What Does This App Do?
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Status](https://img.shields.io/badge/status-Active-success.svg)
 
-Imagine you have two lists of invoices (File A and File B). You want to know:
-1.  **Matched**: Which invoices are exactly the same in both files?
-2.  **Mismatched**: Which invoices have the same number but different amounts?
-3.  **Missing**: Which invoices are in File A but not File B (and vice versa)?
+**A professional tool to reconcile, compare, and visualize invoice datasets instantly.**
 
-This app does all that for you instantly!
+[View Demo](#) · [Report Bug](#) · [Request Feature](#)
+
+</div>
 
 ---
 
-## How to Run the App
+## 🚀 Overview
 
-1.  **Install Dependencies** (First time only):
-    Open your terminal in this folder and run:
+**Smart Reconciliation Visualizer** is a powerful web application designed to simplify the tedious process of comparing financial datasets. Whether you are an accountant, data analyst, or business owner, this tool allows you to upload two datasets (e.g., Purchase Register vs. Sales Register) and instantly identify:
+
+-   ✅ **Matches**: Records that exist in both files perfectly.
+-   ❌ **Mismatches**: Records where amounts differ between files.
+-   ⚠️ **Missing Records**: Invoices present in one file but missing in the other.
+
+Built with a focus on **data density**, **speed**, and **usability**, it features a modern, full-screen dashboard layout.
+
+---
+
+## ✨ Key Features
+
+### 📂 **Data Processing**
+-   **Multi-Format Support**: Upload `.csv`, `.xlsx`, or `.xls` files.
+-   **Smart Parsing**: Automatically detects headers like `Invoice No`, `Amount`, and `Date` regardless of case or position.
+-   **Client-Side Processing**: All data stays in your browser. No data is uploaded to any server, ensuring **100% privacy**.
+
+### 🖥️ **User Interface**
+-   **Professional Dashboard**: Full-screen, resizing-responsive layout optimized for desktop productivity.
+-   **Unified Data Table**: A single, sortable, and searchable table containing all reconciliation results.
+-   **Sticky Headers**: Keep track of column names while scrolling through thousands of rows.
+-   **Status Badges**: Color-coded badges (`Matched`, `Mismatched`, `Missing`) for quick visual scanning.
+
+### 🛠️ **Tools & Utilities**
+-   **Advanced Filtering**: Filter specific categories (e.g., show only "Mismatched" items).
+-   **Global Search**: Instantly find any invoice by number.
+-   **History Tracking**: improved: Automatically saves your recent sessions to your browser's local storage so you can pick up where you left off.
+
+---
+
+## 🛠️ Technology Stack
+
+This project is built using modern, performance-focused web technologies:
+
+| Category | Technology | Description |
+| :--- | :--- | :--- |
+| **Framework** | ![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB) | Core UI library for component-based architecture. |
+| **Styling** | ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white) | Utility-first CSS framework for rapid, responsive design. |
+| **Build Tool** | ![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white) | Next-generation frontend tooling for blistering fast builds. |
+| **Data Parsing** | **SheetJS / PapaParse** | Robust libraries for parsing Excel and CSV files reliably. |
+| **Language** | ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white) | Strongly typed JavaScript for scalable and bug-free code. |
+
+---
+
+## 📂 Project Structure
+
+A clean and organized codebase structure:
+
+```text
+app/
+├── public/              # Static assets
+├── src/
+│   ├── components/      # UI Building Blocks
+│   │   ├── FileUpload.tsx         # File input & processing trigger
+│   │   ├── ReconciliationTable.tsx # Main data grid with sorting/filtering
+│   │   └── History.tsx            # Session history sidebar
+│   ├── utils/           # Core Logic
+│   │   ├── matcher.ts   # The brain: compares arrays of data
+│   │   ├── parser.ts    # The reader: converts files to JSON
+│   │   └── storage.ts   # The memory: handles LocalStorage
+│   ├── App.tsx          # Main layout & state manager
+│   ├── index.css        # Tailwind imports & global styles
+│   └── main.tsx         # Entry point
+├── package.json         # Dependencies & scripts
+├── tailwind.config.js   # Tailwind configuration
+└── vite.config.ts       # Vite configuration
+```
+
+---
+
+## 🚦 Getting Started
+
+Follow these steps to set up the project locally.
+
+### Prerequisites
+-   **Node.js** (v18 or higher)
+-   **npm** (comes with Node.js)
+
+### Installation
+
+1.  **Clone the Repository**
+    ```bash
+    git clone https://github.com/your-username/smart-reconciliation.git
+    cd smart-reconciliation/app
+    ```
+
+2.  **Install Dependencies**
     ```bash
     npm install
     ```
 
-2.  **Start the App**:
-    Run this command to start the website:
+3.  **Run Development Server**
     ```bash
     npm run dev
     ```
 
-3.  **Open in Browser**:
-    Click the link shown in the terminal (usually `http://localhost:5173`) to see the app.
+4.  **Open in Browser**
+    Visit `http://localhost:5173` to view the app.
 
 ---
 
-## How to Use It
+## 🌐 Deployment (Vercel)
 
-1.  **Upload Files**:
-    -   On the left sidebar, you will see "Upload Files".
-    -   Click "Choose File" for **File A** and **File B**.
-    -   Click the **"Reconcile Files"** button.
+This project is optimized for deployment on Vercel.
 
-2.  **View Results**:
-    -   The main dashboard will show you a summary (Matched vs Mismatched).
-    -   A big table will list all the invoices.
-    -   **Green Badge**: Everything is good!
-    -   **Red Badge**: The amounts don't match.
-    -   **Yellow Badge**: The invoice is missing in one of the files.
+1.  Push your code to **GitHub**.
+2.  Log in to [Vercel](https://vercel.com) and click **"Add New Project"**.
+3.  Select your repository.
+4.  **Important**: In the configuration step, change the **Root Directory**.
+    -   Click **Edit** next to "Root Directory".
+    -   Select the **`app`** folder.
+5.  Click **Deploy**.
 
-3.  **Filter & Search**:
-    -   Use the search bar to find a specific Invoice Number.
-    -   Use the dropdown to see only "Mismatched" or "Missing" items.
+Vercel will detect `Vite` automatically and build your site.
 
 ---
 
-## Project Structure (For Developers)
+## 📝 Usage Guide
 
-If you want to look at the code, here is how it is organized:
-
--   **`src/App.tsx`**: The main file that sets up the layout (Sidebar + Main Content).
--   **`src/components/`**: The detailed building blocks:
-    -   `FileUpload.tsx`: Handles picking files.
-    -   `ReconciliationTable.tsx`: The big table that shows results.
-    -   `History.tsx`: Saves your past checks so you don't lose them.
--   **`src/utils/`**: The logic "brain" of the app:
-    -   `parser.ts`: Reads Excel/CSV files and understands them.
-    -   `matcher.ts`: Compares the two files to find differences.
-    -   `storage.ts`: Saves history to your browser.
--   **`src/index.css`**: The styling settings (using Tailwind CSS for design).
+1.  **Prepare Your Files**: Ensure you have two files (Excel or CSV) containing invoice data. Minimum required columns are something resembling `Invoice No` and `Amount`.
+2.  **Upload**: Use the sidebar to upload File A and File B.
+3.  **Analyze**: Click "Reconcile".
+4.  **Review**:
+    -   Sort by "Difference" to prioritize errors.
+    -   Filter by "Missing in B" to find lost invoices.
+    -   Click any history item to reload a past comparison.
 
 ---
 
-## Technologies Used
-
--   **React**: To build the user interface.
--   **Tailwind CSS**: To make it look professional and clean.
--   **SheetJS & PapaParse**: To read Excel and CSV files.
-
-Enjoy using the Smart Reconciliation Visualizer!
+<div align="center">
+  <sub>Built with ❤️ by the Smart Reconciliation Team.</sub>
+</div>
