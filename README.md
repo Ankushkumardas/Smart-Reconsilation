@@ -57,33 +57,6 @@ This project is built using modern, performance-focused web technologies:
 | **Data Parsing** | **SheetJS / PapaParse** | Robust libraries for parsing Excel and CSV files reliably. |
 | **Language** | ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white) | Strongly typed JavaScript for scalable and bug-free code. |
 
----
-
-## 📂 Project Structure
-
-A clean and organized codebase structure:
-
-```text
-app/
-├── public/              # Static assets
-├── src/
-│   ├── components/      # UI Building Blocks
-│   │   ├── FileUpload.tsx         # File input & processing trigger
-│   │   ├── ReconciliationTable.tsx # Main data grid with sorting/filtering
-│   │   └── History.tsx            # Session history sidebar
-│   ├── utils/           # Core Logic
-│   │   ├── matcher.ts   # The brain: compares arrays of data
-│   │   ├── parser.ts    # The reader: converts files to JSON
-│   │   └── storage.ts   # The memory: handles LocalStorage
-│   ├── App.tsx          # Main layout & state manager
-│   ├── index.css        # Tailwind imports & global styles
-│   └── main.tsx         # Entry point
-├── package.json         # Dependencies & scripts
-├── tailwind.config.js   # Tailwind configuration
-└── vite.config.ts       # Vite configuration
-```
-
----
 
 ## 🚦 Getting Started
 
@@ -92,46 +65,7 @@ Follow these steps to set up the project locally.
 ### Prerequisites
 -   **Node.js** (v18 or higher)
 -   **npm** (comes with Node.js)
-
-### Installation
-
-1.  **Clone the Repository**
-    ```bash
-    git clone https://github.com/your-username/smart-reconciliation.git
-    cd smart-reconciliation/app
-    ```
-
-2.  **Install Dependencies**
-    ```bash
-    npm install
-    ```
-
-3.  **Run Development Server**
-    ```bash
-    npm run dev
-    ```
-
-4.  **Open in Browser**
-    Visit `http://localhost:5173` to view the app.
-
 ---
-
-## 🌐 Deployment (Vercel)
-
-This project is optimized for deployment on Vercel.
-
-1.  Push your code to **GitHub**.
-2.  Log in to [Vercel](https://vercel.com) and click **"Add New Project"**.
-3.  Select your repository.
-4.  **Important**: In the configuration step, change the **Root Directory**.
-    -   Click **Edit** next to "Root Directory".
-    -   Select the **`app`** folder.
-5.  Click **Deploy**.
-
-Vercel will detect `Vite` automatically and build your site.
-
----
-
 ## 📝 Usage Guide
 
 1.  **Prepare Your Files**: Ensure you have two files (Excel or CSV) containing invoice data. Minimum required columns are something resembling `Invoice No` and `Amount`.
