@@ -11,17 +11,14 @@ function App() {
   const [results, setResults] = useState<ComparisonResult | null>(null);
 
   const handleProcess = (fileA: Invoice[], fileB: Invoice[]) => {
-    // Rule 5: Reconcile
     const comparison = reconcileFiles(fileA, fileB);
     setResults(comparison);
 
-    // Rule 7: Save to local storage
     saveHistory(comparison);
   };
 
   const handleLoadHistory = (savedResult: ComparisonResult) => {
     setResults(savedResult);
-    // Scroll to top or results
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -29,7 +26,6 @@ function App() {
     <div className="container">
       <header className="header">
         <h1>Smart Reconciliation Visualizer</h1>
-        <p>Simple tool to compare two invoice files (CSV or Excel)</p>
       </header>
 
       <main className="main-content">

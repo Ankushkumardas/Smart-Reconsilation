@@ -35,10 +35,10 @@ const FileUpload: React.FC<FileUploadProps> = ({ onProcess }) => {
 
     return (
         <div className="card">
-            <h2>1. Upload Files</h2>
+            <h2>Upload Files</h2>
             <div className="upload-container">
                 <div className="file-input">
-                    <label>File A (CSV/Excel): </label>
+                    <label>File A (CSV/Excel)</label>
                     <input
                         type="file"
                         accept=".csv, .xlsx, .xls"
@@ -46,7 +46,7 @@ const FileUpload: React.FC<FileUploadProps> = ({ onProcess }) => {
                     />
                 </div>
                 <div className="file-input">
-                    <label>File B (CSV/Excel): </label>
+                    <label>File B (CSV/Excel)</label>
                     <input
                         type="file"
                         accept=".csv, .xlsx, .xls"
@@ -55,9 +55,9 @@ const FileUpload: React.FC<FileUploadProps> = ({ onProcess }) => {
                 </div>
             </div>
 
-            {error && <p style={{ color: "red" }}>{error}</p>}
+            {error && <p style={{ color: "var(--error)", marginBottom: "10px" }}>{error}</p>}
 
-            <button onClick={handleProcess} disabled={loading} style={{ marginTop: "10px" }}>
+            <button onClick={handleProcess} disabled={loading} className="action-btn">
                 {loading ? "Processing..." : "Reconcile Files"}
             </button>
         </div>

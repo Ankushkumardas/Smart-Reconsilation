@@ -1,21 +1,14 @@
 import Papa from "papaparse";
 import * as XLSX from "xlsx";
 
-// Define a simple structure for our Invoice data
 export interface Invoice {
     invoiceNo: string;
     amount: number;
     date: string;
-    // We keep the original data just in case, but for this app we focused on these 3
     [key: string]: any;
 }
 
-// Helper to normalize the data (Rule 4)
 const normalizeInvoice = (row: any): Invoice => {
-    // We assume column names "invoiceNo", "amount", "date" or similar
-    // To be beginner friendly, we will try to find keys that look like these.
-
-    // Simple heuristic: lowercase all keys to find matches
     const keys = Object.keys(row);
     const getValue = (keyword: string) => {
         const key = keys.find((k) => k.toLowerCase().includes(keyword));
@@ -27,11 +20,9 @@ const normalizeInvoice = (row: any): Invoice => {
     const rawDate = getValue("date") || "";
 
     return {
-        invoiceNo: String(rawInvoiceNo).trim().toUpperCase(), // Rule 4: Trim and Uppercase
-        amount: parseFloat(String(rawAmount).replace(/[^0-9.-]+/g, "")) || 0, // Rule 4: Convert to number, remove currency symbols
-        date: String(rawDate), // Rule 4: Date formatting will be done in UI or here? Prompt said "Convert date to YYYY-MM-DD"
-        // For simplicity, let's keep date as string for now, advanced parsing can be added if needed.
-        // If it's Excel serial number, we might need conversion, but let's stick to string first.
+        invoiceNo: String(rawInvoiceNo).trim().toUpperCase(),
+        amount: parseFloat(String(rawAmount).replace(/[^0-9.-]+/g, "")) || 0,
+        date: String(rawDate),
         ...row,
     };
 };
@@ -47,7 +38,7 @@ export const parseFile = (file: File): Promise<Invoice[]> => {
                 skipEmptyLines: true,
                 complete: (results) => {
                     const data = results.data.map(normalizeInvoice);
-                    console.log("Parsed CSV:", data); // Rule 2: Log parsed JSON
+                    console.log("Parsed CSV:", data);
                     resolve(data);
                 },
                 error: (err) => reject(err),
@@ -61,7 +52,7 @@ export const parseFile = (file: File): Promise<Invoice[]> => {
                 const sheet = workbook.Sheets[firstSheetName];
                 const jsonData = XLSX.utils.sheet_to_json(sheet);
                 const normalizedData = jsonData.map(normalizeInvoice);
-                console.log("Parsed Excel:", normalizedData); // Rule 2: Log parsed JSON
+                console.log("Parsed Excel:", normalizedData);
                 resolve(normalizedData);
             };
             reader.onerror = (err) => reject(err);
